@@ -1,0 +1,977 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galabau Mustermann | Pflaster, Terrasse, Zaun und Erdarbeiten</title>
+<meta name="description" content="Galabau Mustermann: Pflasterarbeiten, Terrassenbau, Zaunbau und Erdarbeiten aus einer Hand. Kostenlose Besichtigung und Festpreisangebot.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-950: #0f2a0b;
+    --green-900: #173b12;
+    --green-700: #2e6b1f;
+    --green-500: #4e9a2e;
+    --lime: #8ed64b;
+    --lime-hover: #a6e26c;
+    --soil-900: #1c120a;
+    --soil-700: #4a2e1a;
+    --paper: #f6f4ee;
+    --ink: #1d2a1b;
+    --muted: #5c6758;
+    --radius: 6px;
+    --shadow: 0 18px 40px -24px rgba(15, 42, 11, .45);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body {
+    margin: 0;
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; }
+  h1, h2, h3 { line-height: 1.15; margin: 0 0 .5em; font-weight: 800; }
+  p { margin: 0 0 1em; }
+  .wrap { width: min(1180px, 100% - 32px); margin-inline: auto; }
+  .icon {
+    width: 24px; height: 24px; fill: none; stroke: currentColor;
+    stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 28px; border-radius: 999px; border: 2px solid transparent;
+    font: inherit; font-size: 14px; font-weight: 700; letter-spacing: .04em;
+    text-transform: uppercase; text-decoration: none; cursor: pointer;
+    transition: background .3s, color .3s, border-color .3s, transform .3s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--lime); color: var(--green-950); }
+  .btn-primary:hover { background: var(--lime-hover); }
+  .btn-ghost { border-color: rgba(255, 255, 255, .7); color: #fff; }
+  .btn-ghost:hover { background: rgba(255, 255, 255, .1); }
+  .btn-dark { background: var(--green-950); color: #fff; }
+  .btn-dark:hover { background: var(--green-700); }
+
+  /* Kopfbereich */
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    transition: background .4s ease, box-shadow .4s ease;
+  }
+  .site-header.is-scrolled {
+    background: rgba(15, 42, 11, .96);
+    box-shadow: 0 12px 30px -18px rgba(0, 0, 0, .6);
+    backdrop-filter: blur(8px);
+  }
+  .topbar {
+    height: 38px; display: flex; align-items: center;
+    background: rgba(0, 0, 0, .3); color: rgba(255, 255, 255, .85); font-size: 13px;
+  }
+  .topbar .wrap { display: flex; gap: 24px; align-items: center; }
+  .topbar a { display: inline-flex; gap: 8px; align-items: center; text-decoration: none; }
+  .topbar a:hover { color: var(--lime); }
+  .topbar .icon { width: 14px; height: 14px; }
+
+  .nav { position: relative; }
+  .nav-inner { height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .brand { display: flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; }
+  .brand svg { width: 46px; height: 46px; }
+  .brand-name { display: flex; flex-direction: column; line-height: 1.05; font-weight: 800; font-size: 18px; }
+  .brand-name small { font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--lime); }
+
+  .nav-menu { display: flex; align-items: center; gap: 30px; }
+  .nav-links { display: flex; align-items: center; gap: 30px; list-style: none; margin: 0; padding: 0; }
+  .nav-links a {
+    position: relative; padding: 6px 0; color: #fff; text-decoration: none;
+    font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+    background: var(--lime); transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
+  }
+  .nav-links a:hover::after, .nav-links a.is-active::after { transform: scaleX(1); }
+  .nav-cta { padding: 11px 20px; font-size: 12px; }
+
+  .nav-toggle {
+    display: none; position: relative; width: 44px; height: 44px;
+    background: none; border: 0; cursor: pointer;
+  }
+  .nav-toggle span {
+    position: absolute; left: 10px; right: 10px; height: 2px; background: #fff;
+    transition: transform .3s, opacity .3s;
+  }
+  .nav-toggle span:nth-child(1) { top: 14px; }
+  .nav-toggle span:nth-child(2) { top: 21px; }
+  .nav-toggle span:nth-child(3) { top: 28px; }
+  .nav-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  .nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Hero mit Foto und Papierkante unten */
+  .hero {
+    position: relative; min-height: 88vh; min-height: 88svh;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    color: #fff; padding: 170px 0 150px; overflow: hidden; background: var(--green-950);
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(10, 28, 8, .55) 0%, rgba(10, 28, 8, .72) 100%),
+      url("https://images.unsplash.com/photo-1784293449032-200db587788c?auto=format&fit=crop&w=2000&q=80") center / cover no-repeat;
+  }
+  .hero-inner { position: relative; z-index: 1; }
+  .hero h1 { font-size: clamp(38px, 6vw, 72px); letter-spacing: -.01em; margin-bottom: 22px; }
+  .hero h1 .accent { display: block; color: var(--lime); }
+  .hero .lead {
+    max-width: 640px; margin: 0 auto 36px;
+    font-size: clamp(16px, 1.7vw, 19px); color: rgba(255, 255, 255, .88);
+  }
+  .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .hero-inner > * { animation: rise 1s cubic-bezier(.2, .7, .2, 1) both; }
+  .hero-inner > *:nth-child(2) { animation-delay: .12s; }
+  .hero-inner > *:nth-child(3) { animation-delay: .24s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: none; }
+  }
+  .tear {
+    position: absolute; left: 0; bottom: -1px; width: 100%; height: 64px;
+    fill: var(--paper); z-index: 2; pointer-events: none;
+  }
+
+  /* Allgemeine Abschnitte */
+  .section { position: relative; padding: clamp(72px, 9vw, 116px) 0; }
+  .section-head { text-align: center; max-width: 680px; margin: 0 auto clamp(40px, 6vw, 56px); }
+  .section-head h2 { font-size: clamp(30px, 4.2vw, 44px); }
+  .section-head p { color: var(--muted); font-size: 17px; margin: 0; }
+  .on-dark h2 { color: #fff; }
+  .on-dark p { color: rgba(255, 255, 255, .72); }
+
+  /* Über uns mit Blättern am Rand */
+  .about { background: var(--paper); text-align: center; overflow: hidden; }
+  .about .lead { max-width: 780px; margin: 0 auto 56px; font-size: 18px; color: #3a4637; }
+  .leaf { position: absolute; pointer-events: none; opacity: .55; }
+  .leaf-1 { width: 170px; left: -40px; top: 30%; transform: rotate(-20deg); }
+  .leaf-2 { width: 130px; right: -30px; top: 12%; transform: rotate(35deg); }
+  .leaf-3 { width: 120px; left: 6%; bottom: 8%; transform: rotate(10deg); }
+  .values { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 1000px; margin: 0 auto; }
+  .value {
+    background: #fff; border-radius: var(--radius); padding: 32px 28px;
+    box-shadow: var(--shadow); text-align: left;
+  }
+  .value-icon {
+    width: 52px; height: 52px; border-radius: 50%; margin-bottom: 18px;
+    display: grid; place-items: center; background: #e6f4d4; color: var(--green-700);
+  }
+  .value-icon .icon { width: 24px; height: 24px; }
+  .value h3 { font-size: 18px; color: var(--green-900); }
+  .value p { color: var(--muted); font-size: 15px; margin: 0; }
+
+  /* Leistungen: Fotokarten mit weißer Beschriftung, grüner Verlauf */
+  .services {
+    position: relative;
+    background:
+      radial-gradient(900px 380px at 50% 0%, #ffffff 0%, rgba(255, 255, 255, 0) 70%),
+      linear-gradient(180deg, #f6f4ee 0%, #e4f2d3 30%, #b5dc8a 80%, #9ccf6a 100%);
+  }
+  .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .service {
+    position: relative; isolation: isolate; min-height: 430px;
+    display: flex; align-items: flex-end; overflow: hidden; border-radius: var(--radius);
+    color: #fff; box-shadow: var(--shadow);
+  }
+  .service-img { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+  .service-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s cubic-bezier(.2, .7, .2, 1); }
+  .service:hover .service-img img { transform: scale(1.07); }
+  .service::after {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(180deg, rgba(10, 28, 8, 0) 35%, rgba(10, 28, 8, .55) 100%);
+  }
+  .service-label {
+    width: calc(100% - 32px); margin: 0 16px 16px; padding: 22px 22px 20px;
+    background: #fff; color: var(--ink); border-radius: 4px; box-shadow: 0 14px 30px -18px rgba(0, 0, 0, .5);
+  }
+  .service h3 { font-size: 19px; color: var(--green-900); margin-bottom: 6px; }
+  .service p { font-size: 14px; color: var(--muted); margin: 0 0 12px; line-height: 1.5; }
+  .service-link {
+    display: inline-flex; gap: 8px; align-items: center;
+    font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--green-700); text-decoration: none;
+  }
+  .service-link:hover { color: var(--green-500); }
+  .services-cta { text-align: center; margin-top: 48px; }
+
+  /* Ablauf: Erdboden mit Foto, Grasband oben, Wurzelstamm aus der Mitte */
+  .process {
+    position: relative; padding: 130px 0 clamp(120px, 13vw, 150px);
+    color: #eef5e8;
+    background: #1c120a url("images/erde-querschnitt.jpg") center top / cover no-repeat;
+  }
+  .vine { position: absolute; pointer-events: none; bottom: 0; width: 210px; height: auto; z-index: 0; }
+  .vine-l { left: 0; }
+  .vine-r { right: 0; transform: scaleX(-1); }
+  .tear-process { z-index: 3; filter: drop-shadow(0 -3px 4px rgba(0, 0, 0, .35)); }
+  .leaf-tear {
+    position: absolute; width: 96px; right: 9%; bottom: -30px; z-index: 3;
+    transform: rotate(-18deg); pointer-events: none;
+  }
+  .flow { position: relative; max-width: 1040px; margin: 0 auto; }
+  .flow-svg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    overflow: visible; pointer-events: none; z-index: 0;
+  }
+  .flow-anchor { position: absolute; top: 0; left: 50%; width: 0; height: 0; }
+  .flow-root-body { fill: #5a3a22; stroke: #24150a; stroke-width: 2; }
+  .flow-root-outline { fill: none; stroke: #24150a; stroke-width: 16; stroke-linecap: round; opacity: .85; }
+  .flow-trunk-base { fill: none; stroke: #5a3a22; stroke-width: 10; stroke-linecap: round; }
+  .flow-line {
+    fill: none; stroke: var(--lime); stroke-width: 3; stroke-linecap: round;
+    filter: drop-shadow(0 0 4px rgba(142, 214, 75, .8));
+  }
+  .flow-junction {
+    fill: var(--soil-900); stroke: rgba(142, 214, 75, .6); stroke-width: 2;
+    transition: fill .4s, stroke .4s;
+  }
+  .flow-junction.is-on { fill: var(--lime); stroke: var(--lime); }
+  .flow-dot {
+    fill: #e8ffd0;
+    filter: drop-shadow(0 0 6px var(--lime)) drop-shadow(0 0 14px rgba(142, 214, 75, .9));
+  }
+
+  .flow-row {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center; min-height: 150px;
+  }
+  .flow-row + .flow-row { margin-top: 30px; }
+  .flow-row.is-center { grid-template-columns: 1fr; }
+  .flow-step { display: flex; align-items: center; gap: 22px; }
+  .flow-step.is-left { flex-direction: row-reverse; text-align: right; padding-right: 56px; }
+  .flow-step.is-right { text-align: left; padding-left: 56px; }
+  .flow-step.is-center { flex-direction: column; text-align: center; padding: 0; }
+  .flow-text { max-width: 320px; }
+  .flow-step.is-center .flow-text { max-width: 380px; }
+  .flow-text h3 { font-size: 21px; color: #fff; margin-bottom: 6px; }
+  .flow-text p { margin: 0; font-size: 15px; color: rgba(255, 255, 255, .75); }
+
+  .flow-node {
+    position: relative; flex: 0 0 76px; width: 76px; height: 76px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: #fff; color: var(--green-700);
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, .08);
+    transition: background .5s ease, color .5s ease, box-shadow .6s ease;
+  }
+  .flow-node .icon { width: 30px; height: 30px; }
+  .flow-num {
+    position: absolute; top: -6px; right: -6px; width: 26px; height: 26px; border-radius: 50%;
+    display: grid; place-items: center; background: var(--green-700); color: #fff;
+    font-size: 12px; font-weight: 800; border: 2px solid var(--soil-900);
+    transition: background .5s ease;
+  }
+  .flow-step.is-lit .flow-node {
+    background: var(--lime); color: var(--green-950);
+    box-shadow: 0 0 0 8px rgba(142, 214, 75, .25), 0 0 40px rgba(142, 214, 75, .7);
+  }
+  .flow-step.is-lit .flow-num { background: var(--green-950); }
+  .flow-step.is-lit .flow-node::after {
+    content: ""; position: absolute; inset: -8px; border-radius: 50%;
+    border: 2px solid var(--lime); animation: ping 1.4s ease-out 1 forwards;
+  }
+  @keyframes ping {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(1.7); opacity: 0; }
+  }
+
+  /* Kontakt */
+  .contact { background: var(--paper); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(40px, 6vw, 80px); align-items: start;
+  }
+  .contact h2 { font-size: clamp(30px, 4vw, 44px); }
+  .contact .intro { color: var(--muted); font-size: 17px; }
+  .contact-facts { list-style: none; margin: 32px 0 0; padding: 0; display: grid; gap: 18px; }
+  .contact-facts li { display: flex; gap: 16px; align-items: center; }
+  .contact-facts .value-icon { margin: 0; flex: 0 0 52px; }
+  .contact-facts span { color: var(--ink); }
+  .form-card {
+    background: #fff; border-radius: 10px; padding: clamp(28px, 4vw, 44px); box-shadow: var(--shadow);
+  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field.full { grid-column: 1 / -1; }
+  .field label { font-size: 13px; font-weight: 600; color: var(--green-900); }
+  .field input, .field select, .field textarea {
+    font: inherit; font-size: 15px; padding: 13px 14px; color: var(--ink);
+    background: #fbfcf8; border: 1.5px solid #d6dccd; border-radius: 6px;
+    transition: border-color .3s, box-shadow .3s;
+  }
+  .field textarea { min-height: 120px; resize: vertical; }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--green-500); box-shadow: 0 0 0 4px rgba(78, 154, 46, .15);
+  }
+  .check { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--muted); }
+  .check input { margin-top: 4px; accent-color: var(--green-700); }
+  .form-note { min-height: 1.4em; margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+
+  /* Fußzeile */
+  .site-footer { background: var(--green-950); color: rgba(255, 255, 255, .7); padding: 56px 0 28px; font-size: 14px; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+  .site-footer h4 {
+    margin: 0 0 14px; color: #fff; font-size: 14px; letter-spacing: .08em; text-transform: uppercase;
+  }
+  .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .site-footer a { color: inherit; text-decoration: none; }
+  .site-footer a:hover { color: var(--lime); }
+  .footer-bottom {
+    margin-top: 40px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, .1);
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px;
+  }
+  .footer-bottom nav { display: flex; gap: 20px; }
+
+  /* Scroll-Animationen */
+  [data-reveal] {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity .9s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.2, .7, .2, 1);
+    transition-delay: var(--delay, 0s);
+  }
+  [data-reveal].is-visible { opacity: 1; transform: none; }
+  .flow-step[data-reveal] { transform: none; }
+
+  /* Responsive */
+  @media (max-width: 1080px) {
+    .service-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .nav-toggle { display: block; }
+    .nav-menu { display: none; }
+    .nav-open .nav-menu {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 22px;
+      position: absolute; top: 100%; left: 0; right: 0;
+      padding: 20px 16px 28px; background: var(--green-950);
+    }
+    .nav-links { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .nav-links a { font-size: 15px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 760px) {
+    .values { grid-template-columns: 1fr; }
+    .flow-anchor { left: 38px; }
+    .flow-row, .flow-row.is-center { grid-template-columns: 1fr; }
+    .flow-row + .flow-row { margin-top: 28px; }
+    .flow-step,
+    .flow-step.is-left,
+    .flow-step.is-right,
+    .flow-step.is-center {
+      flex-direction: row; justify-content: flex-start; align-items: center;
+      text-align: left; padding: 0; gap: 20px;
+    }
+    .flow-node { flex-basis: 64px; width: 64px; height: 64px; }
+    .flow-text { max-width: none; }
+    .service { min-height: 360px; }
+  }
+  @media (max-width: 560px) {
+    .service-grid { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .topbar .hide-sm { display: none; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero { padding-top: 140px; }
+    .hero-actions .btn { width: 100%; justify-content: center; }
+    .leaf { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    [data-reveal] { opacity: 1; transform: none; transition: none; }
+    .hero-inner > * { animation: none; }
+    .flow-step.is-lit .flow-node::after { animation: none; }
+    .service:hover .service-img img { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="topbar">
+    <div class="wrap">
+      <a href="tel:+49123456789">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+        0123 456789
+      </a>
+      <a class="hide-sm" href="mailto:info@galabau-mustermann.de">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+        info@galabau-mustermann.de
+      </a>
+    </div>
+  </div>
+
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#start" aria-label="Galabau Mustermann, zur Startseite">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="18" r="13" fill="#8ED64B"/>
+          <circle cx="16" cy="24" r="8" fill="#4E9A2E"/>
+          <circle cx="32" cy="24" r="8" fill="#4E9A2E"/>
+          <rect x="22" y="28" width="4" height="15" rx="2" fill="#c9a27a"/>
+          <path d="M8 46h32" stroke="#8ED64B" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-name">Galabau<small>Mustermann</small></span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="#leistungen">Leistungen</a></li>
+          <li><a href="#ueber-uns">Über uns</a></li>
+          <li><a href="#ablauf">Ablauf</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+        <a class="btn btn-primary nav-cta" href="#kontakt">Kostenlos anfragen</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="start">
+  <div class="wrap hero-inner">
+    <h1>Ihr Außenbereich,<span class="accent">sauber geplant und gebaut.</span></h1>
+    <p class="lead">Pflaster, Terrassen, Zäune und Erdarbeiten aus einer Hand. Gründlich vorbereitet, sauber ausgeführt und pünktlich übergeben.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#kontakt">Kostenlos anfragen</a>
+      <a class="btn btn-ghost" href="#leistungen">Leistungen ansehen</a>
+    </div>
+  </div>
+  <!-- Papierkante als Übergang zum hellen Abschnitt -->
+  <svg class="tear" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 40 L24 24 L48 46 L80 18 L112 42 L140 28 L176 50 L210 22 L244 44 L276 16 L310 40 L344 26 L380 48 L412 20 L448 44 L482 30 L518 52 L552 24 L588 46 L620 18 L656 42 L690 28 L726 50 L760 22 L796 44 L830 16 L866 40 L900 26 L936 48 L970 20 L1006 44 L1040 30 L1076 52 L1110 24 L1146 46 L1180 18 L1216 42 L1250 28 L1286 50 L1320 22 L1356 44 L1390 30 L1420 46 L1440 36 V64 H0 Z"/>
+  </svg>
+</section>
+
+<section class="about section" id="ueber-uns">
+  <svg class="leaf leaf-1" viewBox="0 0 200 120" aria-hidden="true">
+    <path d="M4 110 C 50 20, 130 0, 196 14 C 150 72, 90 118, 4 110 Z" fill="#8ed64b"/>
+    <path d="M14 104 C 70 60, 120 36, 180 20" fill="none" stroke="#4e9a2e" stroke-width="2"/>
+  </svg>
+  <svg class="leaf leaf-2" viewBox="0 0 200 120" aria-hidden="true">
+    <path d="M4 110 C 50 20, 130 0, 196 14 C 150 72, 90 118, 4 110 Z" fill="#4e9a2e"/>
+  </svg>
+  <svg class="leaf leaf-3" viewBox="0 0 200 120" aria-hidden="true">
+    <path d="M4 110 C 50 20, 130 0, 196 14 C 150 72, 90 118, 4 110 Z" fill="#8ed64b"/>
+  </svg>
+
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <h2>Über uns</h2>
+    </div>
+    <p class="lead" data-reveal>Galabau Mustermann plant und baut Außenanlagen für Privatkunden und Hausbesitzer. Von der ersten Skizze bis zur Abnahme begleiten wir Ihr Projekt persönlich. Wichtig sind uns saubere Ausführung, ehrliche Beratung und Termine, die wir einhalten.</p>
+
+    <div class="values">
+      <article class="value" data-reveal style="--delay:.05s">
+        <div class="value-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 6.5A7 7 0 1 0 17 17.5"/><path d="M4.5 10.5h9M4.5 13.5h9"/></svg></div>
+        <h3>Festpreis nach Besichtigung</h3>
+        <p>Sie wissen vor Baubeginn, was das Projekt kostet. Ohne versteckte Posten.</p>
+      </article>
+      <article class="value" data-reveal style="--delay:.15s">
+        <div class="value-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
+        <h3>Ein fester Ansprechpartner</h3>
+        <p>Eine Person hält den Kontakt, plant mit Ihnen und koordiniert das Team.</p>
+      </article>
+      <article class="value" data-reveal style="--delay:.25s">
+        <div class="value-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.8"/></svg></div>
+        <h3>Saubere Übergabe</h3>
+        <p>Wir räumen auf, prüfen das Ergebnis gemeinsam und erklären die Pflege.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="services section" id="leistungen">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <h2>Unsere Leistungen</h2>
+      <p>Vier Leistungen, ein Ansprechpartner. Alles rund um Ihr Außengelände aus einer Hand.</p>
+    </div>
+
+    <div class="service-grid">
+      <article class="service" data-reveal style="--delay:0s">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1743802969597-cded1a7356bd?auto=format&fit=crop&w=1000&q=80" alt="Pflasterfläche aus grauem Naturstein" loading="lazy">
+        </div>
+        <div class="service-label">
+          <h3>Pflasterarbeiten</h3>
+          <p>Einfahrten, Wege und Plätze aus Naturstein oder Betonpflaster.</p>
+          <a class="service-link" href="#kontakt">Mehr erfahren <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="service" data-reveal style="--delay:.1s">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1792782418351-77a679ef408b?auto=format&fit=crop&w=1000&q=80" alt="Holzterrasse mit Stühlen" loading="lazy">
+        </div>
+        <div class="service-label">
+          <h3>Terrassenbau</h3>
+          <p>Holz, Naturstein oder Feinsteinzeug, mit sauberer Entwässerung.</p>
+          <a class="service-link" href="#kontakt">Mehr erfahren <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="service" data-reveal style="--delay:.2s">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1601042860368-debed90085e0?auto=format&fit=crop&w=1000&q=80" alt="Brauner Holzzaun mit weißen Blumen" loading="lazy">
+        </div>
+        <div class="service-label">
+          <h3>Zaunbau</h3>
+          <p>Holz-, Metall- und Gabionenzäune für Sichtschutz und Abgrenzung.</p>
+          <a class="service-link" href="#kontakt">Mehr erfahren <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="service" data-reveal style="--delay:.3s">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1622082679766-c5912d9416eb?auto=format&fit=crop&w=1000&q=80" alt="Gelber Bagger auf braunem Boden" loading="lazy">
+        </div>
+        <div class="service-label">
+          <h3>Erdarbeiten</h3>
+          <p>Aushub, Planierung und Bodenvorbereitung mit passender Technik.</p>
+          <a class="service-link" href="#kontakt">Mehr erfahren <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </div>
+
+    <div class="services-cta" data-reveal>
+      <a class="btn btn-dark" href="#kontakt">Alle Leistungen anfragen</a>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="ablauf">
+  <svg class="vine vine-l" viewBox="0 0 210 260" aria-hidden="true">
+    <path d="M8 256 C40 190 18 120 96 70 S160 18 204 26" fill="none" stroke="#2e6b1f" stroke-width="3" stroke-linecap="round"/>
+    <g fill="#3f8f2a">
+      <ellipse cx="34" cy="196" rx="18" ry="9" transform="rotate(-35 34 196)"/>
+      <ellipse cx="62" cy="128" rx="19" ry="9" transform="rotate(25 62 128)"/>
+      <ellipse cx="124" cy="60" rx="18" ry="9" transform="rotate(-25 124 60)"/>
+      <ellipse cx="176" cy="30" rx="15" ry="8" transform="rotate(12 176 30)"/>
+    </g>
+    <g fill="#5fb13a">
+      <ellipse cx="50" cy="164" rx="14" ry="7" transform="rotate(15 50 164)"/>
+      <ellipse cx="104" cy="92" rx="14" ry="7" transform="rotate(-40 104 92)"/>
+    </g>
+  </svg>
+  <svg class="vine vine-r" viewBox="0 0 210 260" aria-hidden="true">
+    <path d="M8 256 C40 190 18 120 96 70 S160 18 204 26" fill="none" stroke="#2e6b1f" stroke-width="3" stroke-linecap="round"/>
+    <g fill="#3f8f2a">
+      <ellipse cx="34" cy="196" rx="18" ry="9" transform="rotate(-35 34 196)"/>
+      <ellipse cx="62" cy="128" rx="19" ry="9" transform="rotate(25 62 128)"/>
+      <ellipse cx="124" cy="60" rx="18" ry="9" transform="rotate(-25 124 60)"/>
+      <ellipse cx="176" cy="30" rx="15" ry="8" transform="rotate(12 176 30)"/>
+    </g>
+  </svg>
+
+  <div class="wrap">
+    <div class="section-head on-dark" data-reveal>
+      <h2>So läuft Ihr Projekt ab</h2>
+      <p>Vom ersten Gespräch bis zur fertigen Fläche. So behalten Sie jederzeit den Überblick.</p>
+    </div>
+
+    <div class="flow" id="flow">
+      <svg class="flow-svg" aria-hidden="true"></svg>
+      <span class="flow-anchor" aria-hidden="true"></span>
+
+      <div class="flow-row">
+        <article class="flow-step is-left" data-reveal>
+          <div class="flow-node">
+            <span class="flow-num">1</span>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <div class="flow-text">
+            <h3>Besichtigung</h3>
+            <p>Wir kommen zu Ihnen, sehen uns das Grundstück an und hören, was Sie sich vorstellen.</p>
+          </div>
+        </article>
+        <article class="flow-step is-right" data-reveal style="--delay:.1s">
+          <div class="flow-node">
+            <span class="flow-num">2</span>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg>
+          </div>
+          <div class="flow-text">
+            <h3>Planung</h3>
+            <p>Wir erstellen einen Plan mit Maßen, Materialien und einem realistischen Zeitrahmen.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="flow-row">
+        <article class="flow-step is-left" data-reveal>
+          <div class="flow-node">
+            <span class="flow-num">3</span>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 6.5A7 7 0 1 0 17 17.5"/><path d="M4.5 10.5h9M4.5 13.5h9"/></svg>
+          </div>
+          <div class="flow-text">
+            <h3>Festpreisangebot</h3>
+            <p>Sie erhalten ein klares Angebot mit allen Leistungen und ohne Überraschungen.</p>
+          </div>
+        </article>
+        <article class="flow-step is-right" data-reveal style="--delay:.1s">
+          <div class="flow-node">
+            <span class="flow-num">4</span>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9l-3.8 3.8z"/></svg>
+          </div>
+          <div class="flow-text">
+            <h3>Ausführung</h3>
+            <p>Unser Team arbeitet sauber, stimmt sich mit Ihnen ab und hält die vereinbarten Termine.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="flow-row is-center">
+        <article class="flow-step is-center" data-reveal>
+          <div class="flow-node">
+            <span class="flow-num">5</span>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.8"/></svg>
+          </div>
+          <div class="flow-text">
+            <h3>Übergabe</h3>
+            <p>Wir nehmen die Arbeit gemeinsam ab und geben Ihnen Hinweise zur Pflege mit auf den Weg.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <svg class="tear tear-process" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 40 L24 24 L48 46 L80 18 L112 42 L140 28 L176 50 L210 22 L244 44 L276 16 L310 40 L344 26 L380 48 L412 20 L448 44 L482 30 L518 52 L552 24 L588 46 L620 18 L656 42 L690 28 L726 50 L760 22 L796 44 L830 16 L866 40 L900 26 L936 48 L970 20 L1006 44 L1040 30 L1076 52 L1110 24 L1146 46 L1180 18 L1216 42 L1250 28 L1286 50 L1320 22 L1356 44 L1390 30 L1420 46 L1440 36 V64 H0 Z"/>
+  </svg>
+  <svg class="leaf-tear" viewBox="0 0 200 120" aria-hidden="true">
+    <path d="M4 110 C 50 20, 130 0, 196 14 C 150 72, 90 118, 4 110 Z" fill="#4e9a2e"/>
+    <path d="M14 104 C 70 60, 120 36, 180 20" fill="none" stroke="#2e6b1f" stroke-width="2"/>
+  </svg>
+</section>
+
+<section class="contact section" id="kontakt">
+  <div class="wrap contact-grid">
+    <div data-reveal>
+      <h2>Ihr Projekt, unverbindlich besprochen</h2>
+      <p class="intro">Schreiben Sie uns kurz, was Sie vorhaben. Wir melden uns zeitnah und vereinbaren einen Termin vor Ort.</p>
+
+      <ul class="contact-facts">
+        <li>
+          <div class="value-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div>
+          <span><a href="tel:+49123456789">0123 456789</a></span>
+        </li>
+        <li>
+          <div class="value-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></div>
+          <span><a href="mailto:info@galabau-mustermann.de">info@galabau-mustermann.de</a></span>
+        </li>
+        <li>
+          <div class="value-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div>
+          <span>Musterstraße 1, 12345 Musterstadt</span>
+        </li>
+        <li>
+          <div class="value-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <span>Mo. bis Fr. 7 bis 17 Uhr</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="form-card" data-reveal style="--delay:.15s">
+      <!-- Formular noch ohne Versand: action an einen Make-Webhook oder Formspree anbinden -->
+      <form id="kontakt-form" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="name">Ihr Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="kontakt-feld">Telefon oder E-Mail</label>
+            <input id="kontakt-feld" name="kontakt" type="text" autocomplete="tel" required>
+          </div>
+          <div class="field full">
+            <label for="leistung">Gewünschte Leistung</label>
+            <select id="leistung" name="leistung">
+              <option>Bitte wählen</option>
+              <option>Pflasterarbeiten</option>
+              <option>Terrassenbau</option>
+              <option>Zaunbau</option>
+              <option>Erdarbeiten</option>
+              <option>Mehrere Leistungen</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="nachricht">Beschreibung Ihres Projekts</label>
+            <textarea id="nachricht" name="nachricht" placeholder="Was soll entstehen? Wie groß ist die Fläche ungefähr?"></textarea>
+          </div>
+          <div class="field full">
+            <label class="check">
+              <input type="checkbox" name="datenschutz" required>
+              <span>Ich habe die Datenschutzerklärung gelesen und stimme der Verarbeitung meiner Angaben zu.</span>
+            </label>
+          </div>
+          <div class="field full">
+            <button class="btn btn-dark" type="submit">Anfrage senden</button>
+            <p class="form-note" role="status"></p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#start">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="18" r="13" fill="#8ED64B"/>
+            <circle cx="16" cy="24" r="8" fill="#4E9A2E"/>
+            <circle cx="32" cy="24" r="8" fill="#4E9A2E"/>
+            <rect x="22" y="28" width="4" height="15" rx="2" fill="#c9a27a"/>
+          </svg>
+          <span class="brand-name">Galabau<small>Mustermann</small></span>
+        </a>
+        <p style="margin-top:18px">Pflaster, Terrasse, Zaun und Erdarbeiten. Ihr Galabau-Betrieb für saubere Außenanlagen.</p>
+      </div>
+      <div>
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="#leistungen">Pflasterarbeiten</a></li>
+          <li><a href="#leistungen">Terrassenbau</a></li>
+          <li><a href="#leistungen">Zaunbau</a></li>
+          <li><a href="#leistungen">Erdarbeiten</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:+49123456789">0123 456789</a></li>
+          <li><a href="mailto:info@galabau-mustermann.de">info@galabau-mustermann.de</a></li>
+          <li>Musterstraße 1, 12345 Musterstadt</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="jahr">2026</span> Galabau Mustermann. Fotos: Unsplash</span>
+      <nav>
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const NS = 'http://www.w3.org/2000/svg';
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+  /* Kopfbereich: Schatten beim Scrollen und mobiles Menü */
+  const header = $('.site-header');
+  const toggle = $('.nav-toggle');
+  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  toggle.addEventListener('click', () => {
+    const open = header.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  $$('.nav-menu a').forEach((link) => link.addEventListener('click', () => {
+    header.classList.remove('nav-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  /* Aktiver Menüpunkt beim Scrollen */
+  const navLinks = $$('.nav-links a');
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      navLinks.forEach((a) => a.classList.remove('is-active'));
+      const link = navLinks.find((a) => a.getAttribute('href') === `#${entry.target.id}`);
+      if (link) link.classList.add('is-active');
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  $$('section[id]').forEach((section) => spy.observe(section));
+
+  /* Scroll-Animationen */
+  const revealEls = $$('[data-reveal]');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach((el) => el.classList.add('is-visible'));
+  } else {
+    const reveal = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        reveal.unobserve(entry.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach((el) => reveal.observe(el));
+  }
+
+  /* Ablauf: grüne Punkte laufen aus dem Stamm zu den Schritten und lassen sie aufleuchten */
+  const flow = $('#flow');
+  const svg = $('.flow-svg', flow);
+  const anchor = $('.flow-anchor', flow);
+  const steps = $$('.flow-step', flow);
+  const TOTAL = 1800;
+  const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - ((-2 * t + 2) ** 2) / 2);
+  const linear = (t) => t;
+  let shape = null;
+  let played = reduceMotion;
+  let playing = false;
+
+  const tween = (duration, onFrame, onDone, easing = easeInOut) => {
+    const start = performance.now();
+    const frame = (now) => {
+      const t = Math.min((now - start) / duration, 1);
+      onFrame(easing(t));
+      if (t < 1) requestAnimationFrame(frame);
+      else if (onDone) onDone();
+    };
+    requestAnimationFrame(frame);
+  };
+
+  const makeEl = (name, attrs) => {
+    const node = document.createElementNS(NS, name);
+    Object.entries(attrs).forEach(([key, value]) => node.setAttribute(key, value));
+    svg.appendChild(node);
+    return node;
+  };
+
+  const setProgress = (path, len, p) => {
+    path.style.strokeDasharray = `${len} ${len}`;
+    path.style.strokeDashoffset = String(len * (1 - p));
+  };
+
+  const travel = (path, duration, onDone, easing = easeInOut) => {
+    const len = path.getTotalLength();
+    if (!len) { onDone(); return; }
+    const start = path.getPointAtLength(0);
+    const dot = makeEl('circle', { r: 6, class: 'flow-dot', cx: start.x, cy: start.y });
+    tween(duration, (t) => {
+      const p = path.getPointAtLength(len * t);
+      dot.setAttribute('cx', p.x);
+      dot.setAttribute('cy', p.y);
+    }, () => { dot.remove(); onDone(); }, easing);
+  };
+
+  const build = () => {
+    if (playing) return;
+    const fr = flow.getBoundingClientRect();
+    const ar = anchor.getBoundingClientRect();
+    const sx = ar.left + ar.width / 2 - fr.left;
+    const pts = steps.map((step) => {
+      const r = $('.flow-node', step).getBoundingClientRect();
+      return { step, x: r.left + r.width / 2 - fr.left, y: r.top + r.height / 2 - fr.top };
+    });
+    const top = pts[0].y;
+    const bottom = pts[pts.length - 1].y;
+
+    svg.setAttribute('viewBox', `0 0 ${fr.width} ${fr.height}`);
+    svg.innerHTML = '';
+
+    /* Wurzelstamm: oben breit, nach unten schmaler, Äste biegen sich zu den Schritten */
+    const rootTop = top - 50;
+    const mid = (rootTop + bottom) / 2;
+    makeEl('path', {
+      d: `M${sx - 16} ${rootTop} L${sx + 16} ${rootTop} Q${sx + 7} ${mid} ${sx + 4} ${bottom} L${sx - 4} ${bottom} Q${sx - 7} ${mid} ${sx - 16} ${rootTop} Z`,
+      class: 'flow-root-body',
+    });
+    const trunkD = `M${sx} ${rootTop} L${sx} ${bottom}`;
+    const trunk = makeEl('path', { d: trunkD, class: 'flow-line' });
+    const trunkLen = trunk.getTotalLength();
+
+    const parts = pts.map((p) => {
+      const dx = p.x - sx;
+      const straight = Math.abs(dx) < 2;
+      const branchY = straight ? p.y : p.y + 34;
+      const d = straight
+        ? `M${sx} ${p.y} L${p.x} ${p.y}`
+        : `M${sx} ${branchY} C${sx + dx * 0.5} ${branchY} ${p.x - dx * 0.15} ${p.y} ${p.x} ${p.y}`;
+      makeEl('path', { d, class: 'flow-root-outline' });
+      makeEl('path', { d, class: 'flow-trunk-base' });
+      const junction = makeEl('circle', { cx: sx, cy: branchY, r: 6, class: 'flow-junction' });
+      const line = makeEl('path', { d, class: 'flow-line' });
+      return {
+        ...p,
+        junction,
+        line,
+        len: line.getTotalLength(),
+        ratio: (p.y - top) / (bottom - top || 1),
+      };
+    });
+
+    shape = { trunk, trunkLen, parts };
+    setProgress(trunk, trunkLen, played ? 1 : 0);
+    parts.forEach((p) => {
+      if (p.len) setProgress(p.line, p.len, played ? 1 : 0);
+      p.junction.classList.toggle('is-on', played);
+      p.step.classList.toggle('is-lit', played);
+    });
+  };
+
+  const play = () => {
+    if (played) return;
+    played = true;
+    playing = true;
+    const { trunk, trunkLen, parts } = shape;
+
+    tween(TOTAL, (p) => setProgress(trunk, trunkLen, p), null, linear);
+    travel(trunk, TOTAL, () => {}, linear);
+
+    parts.forEach((p) => {
+      setTimeout(() => {
+        p.junction.classList.add('is-on');
+        if (!p.len) {
+          p.step.classList.add('is-lit');
+          return;
+        }
+        tween(560, (t) => setProgress(p.line, p.len, t));
+        travel(p.line, 560, () => p.step.classList.add('is-lit'));
+      }, TOTAL * p.ratio);
+    });
+
+    setTimeout(() => {
+      playing = false;
+      build();
+    }, TOTAL + 900);
+  };
+
+  if (!reduceMotion) {
+    const trigger = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      trigger.disconnect();
+      play();
+    }, { threshold: 0.35 });
+    trigger.observe(flow);
+  }
+  new ResizeObserver(() => build()).observe(flow);
+  if (document.fonts) document.fonts.ready.then(build);
+
+  /* Kontaktformular: Versand ist im Entwurf noch nicht angebunden */
+  const form = $('#kontakt-form');
+  const note = $('.form-note', form);
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    note.textContent = 'Der Versand ist in diesem Entwurf noch nicht angebunden.';
+  });
+
+  $('#jahr').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
